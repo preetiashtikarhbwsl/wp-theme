@@ -13,17 +13,17 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="grid-container">
-			  <div>
+			  <div class="footer-section-one">
 				<h2>Welcome to DESIGNfly</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id justo cursus, euismod elit ac, imperdiet dui. Pellentesque porttitor a nulla laoreet facilisis. Vestibulum a luctus lacus. Etiam suscipit eleifend dui eu semper.</p>
-				<a href="#">Read More</a>
+				<p class="grid-container-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id justo cursus, euismod elit ac, imperdiet dui. Pellentesque porttitor a nulla laoreet facilisis. Vestibulum a luctus lacus. Etiam suscipit eleifend dui eu semper.</p>
+				<a href="#" class="footer-read-more">Read More</a>
 			</div>
-			 <div>
+			 <div class="footer-section-two">
 			 <h2>Contact us</h2>
 			 <p>Street 21 Planet,A-11, dapibus tristique. 123551</p>
 			 <p>Tel: 123 4567890; Fax: 123 456789</p>
-			 <p>Email:<span class="email">contactus@designfly.com</span></p>
-			 <div>
+			 <p>Email: <span class="email-color">contactus@designfly.com</span></p>
+			 <div class="social-icons">
 				<a href="#" class="fa fa-facebook"></a>
 				<a href="#" class="fa fa-twitter"></a>
 				<a href="#" class="fa fa-google"></a>
@@ -33,17 +33,8 @@
 			</div>   
 		</div>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'wp-theme' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'wp-theme' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'wp-theme' ), 'wp-theme', '<a href="http://underscores.me/">Underscores.me</a>' );
-				?>
+			<p class="inline-para">© 2022 - D'SIGNfly<span class="sep"> | </span></p>			
+			<p class="inline-para">Designed by <span><a href="#" class="footer-link">rtCamp</a></span></p>	
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

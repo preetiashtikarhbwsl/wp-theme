@@ -17,6 +17,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="http://localhost/wordpress/wp-content/themes/wp-theme/portfolio-pagination.js"></script>
+	
+	<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+	<link rel="stylesheet" href="http://localhost/wordpress/wp-content/themes/wp-theme/lightbox.css">
+	<script type="text/javascript" src="http://localhost/wordpress/wp-content/themes/wp-theme/lightbox-plus-jquery.js"></script>
 
 	<?php wp_head(); ?>
 </head>
@@ -46,7 +52,7 @@
 		</nav><!-- #site-navigation -->
 		<div class="search-container">
 			<form class="search-bar" action="/action_page.php">
-				<input type="text" placeholder="Search.." name="search">
+				<input type="text" class="search-bar-input" placeholder="Search.." name="search">
 				<div class="submit__button">
 				<button type="submit"><i class="fa fa-search"></i></button>
 				</div>

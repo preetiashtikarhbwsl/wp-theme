@@ -211,31 +211,31 @@ function portfolio() {
 		'items_list_navigation' => __( 'Items list navigation', 'wp-theme' ),
 		'filter_items_list'     => __( 'Filter items list', 'wp-theme' ),
 	);
-	$args = array(
-		'label'                 => __( 'portfolio', 'wp-theme' ),
-		'description'           => __( 'Post Type Description', 'wp-theme' ),
-		'labels'                => $labels,
-		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments' ),
-		'taxonomies'            => array( 'portfolio_category'),
-		'hierarchical'          => true,
-		'public'                => true,
-		'show_ui'               => true,
-		'show_in_menu'          => true,
-		'menu_position'         => 5,
-		'menu_icon'             => 'dashicons-format-gallery',
-		'show_in_admin_bar'     => true,
-		'show_in_nav_menus'     => true,
-		'can_export'            => true,
-		'has_archive'           => true,
-		'exclude_from_search'   => false,
-		'publicly_queryable'    => true,
-		'capability_type'       => 'page',
+	$args   = array(
+		'label'               => __( 'portfolio', 'wp-theme' ),
+		'description'         => __( 'Post Type Description', 'wp-theme' ),
+		'labels'              => $labels,
+		'supports'            => array( 'title', 'editor', 'thumbnail', 'comments' ),
+		'taxonomies'          => array( 'portfolio_category' ),
+		'hierarchical'        => true,
+		'public'              => true,
+		'show_ui'             => true,
+		'show_in_menu'        => true,
+		'menu_position'       => 5,
+		'menu_icon'           => 'dashicons-format-gallery',
+		'show_in_admin_bar'   => true,
+		'show_in_nav_menus'   => true,
+		'can_export'          => true,
+		'has_archive'         => true,
+		'exclude_from_search' => false,
+		'publicly_queryable'  => true,
+		'capability_type'     => 'page',
 	);
 	register_post_type( 'portfolio', $args );
 
 }
 add_action( 'init', 'portfolio', 0 );
- 
+
 /**
  * Register Custom Taxonomy Category
  */
@@ -263,14 +263,14 @@ function custom_portfolio_taxonomy() {
 		'items_list'                 => __( 'Items list', 'wp-theme' ),
 		'items_list_navigation'      => __( 'Items list navigation', 'wp-theme' ),
 	);
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => true,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => true,
+		'public'            => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud'     => true,
 	);
 	register_taxonomy( 'portfolio_category', array( 'portfolio' ), $args );
 
@@ -304,16 +304,61 @@ function custom_portfolio_taxonomy_tag() {
 		'items_list'                 => __( 'Items list', 'wp-theme' ),
 		'items_list_navigation'      => __( 'Items list navigation', 'wp-theme' ),
 	);
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => false,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
+	$args   = array(
+		'labels'            => $labels,
+		'hierarchical'      => false,
+		'public'            => true,
+		'show_ui'           => true,
+		'show_admin_column' => true,
+		'show_in_nav_menus' => true,
+		'show_tagcloud'     => true,
 	);
 	register_taxonomy( 'portfolio_tag', array( 'portfolio' ), $args );
 
 }
 add_action( 'init', 'custom_portfolio_taxonomy_tag', 0 );
+
+
+function themeslug_enqueue_script() {
+	wp_enqueue_script( 'pagination-js', get_template_directory_uri() . '/portfolio-pagination.js', array(), 1.0, true );
+}
+
+add_action( 'wp_enqueue_scripts', 'themeslug_enqueue_script' );
+
+  //  Custom post type pagination function 
+	
+  function cpt_pagination($pages = '', $range = 4)
+  {
+	  $showitems = ($range * 2)+1;
+	  global $paged;
+	  if(empty($paged)) $paged = 1;
+	  if($pages == '')
+	  {
+		  global $wp_query;
+		  $pages = $wp_query->max_num_pages;
+		  if(!$pages)
+		  {
+			  $pages = 1;
+		  }
+	  }
+	  if(1 != $pages)
+	  {
+		  echo "<nav aria-label='Page navigation example'>  <ul class='pagination'> <span>Page ".$paged." of ".$pages."</span>";
+		  if($paged > 2 && $paged > $range+1 && $showitems < $pages) echo "<a href='".get_pagenum_link(1)."'>&laquo; First</a>";
+		  if($paged > 1 && $showitems < $pages) echo "<a href='".get_pagenum_link($paged - 1)."'>&lsaquo; Previous</a>";
+		  for ($i=1; $i <= $pages; $i++)
+		  {
+			  if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) || $pages <= $showitems ))
+			  {
+				  echo ($paged == $i)? "<li class=\"page-item active\"><a class='page-link'>".$i."</a></li>":"<li class='page-item'> <a href='".get_pagenum_link($i)."' class=\"page-link\">".$i."</a></li>";
+			  }
+		  }
+		  if ($paged < $pages && $showitems < $pages) echo " <li class='page-item'><a class='page-link' href=\"".get_pagenum_link($paged + 1)."\">i class='flaticon flaticon-back'></i></a></li>";
+		  if ($paged < $pages-1 &&  $paged+$range-1 < $pages && $showitems < $pages) echo " <li class='page-item'><a class='page-link' href='".get_pagenum_link($pages)."'><i class='flaticon flaticon-arrow'></i></a></li>";
+		  echo "</ul></nav>\n";
+	  }
+}
+
+//add_action( 'init', 'cpt_pagination');
+
+
