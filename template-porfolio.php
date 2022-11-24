@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Template Name: Portfolio Template
+ * Template Name: Portfolio Page
  */
 
 get_header();
@@ -55,30 +55,30 @@ get_header();
 				'hide_empty' => false,
 			)
 		);
-		foreach ($newCat as $newsCatData) {
-		?>
+		foreach ( $newCat as $newsCatData ) {
+			?>
 			<div class="category-option">
 				<?php $category_name = $newsCatData->name; ?>
-				<button class="gallery__button" onclick="toggleHide()"><?php echo $category_name; ?></button>
+				<button class="gallery__button"><?php echo $category_name; ?></button>
 			</div>
-		<?php
+			<?php
 		}
 		?>
 	</div>
 </div>
 
 <?php
-// Step 1 : Create Custom Query 
+// Step 1 : Create Custom Query
 
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
 $args = array(
-	'posts_per_page' => 6, // query last 2 posts  
-	'post_type' => 'portfolio',
-	'paged' => $paged
+	'posts_per_page' => 6, // query last 2 posts
+	'post_type'      => 'portfolio',
+	'paged'          => $paged,
 );
 
-$customPostQuery = new WP_Query($args);
+$customPostQuery = new WP_Query( $args );
 
 
 ?>
@@ -93,15 +93,15 @@ $customPostQuery = new WP_Query($args);
 
 			<?php
 
-			if ($customPostQuery->have_posts()) :
+			if ( $customPostQuery->have_posts() ) :
 
-				while ($customPostQuery->have_posts()) :
+				while ( $customPostQuery->have_posts() ) :
 
 					$customPostQuery->the_post();
 
 					global $post;
-					$imagepath = wp_get_attachment_image_src(get_post_thumbnail_id(), 'full');
-			?>
+					$imagepath = wp_get_attachment_image_src( get_post_thumbnail_id(), 'full' );
+					?>
 
 					<a href="<?php echo $imagepath[0]; ?>" data-lightbox="image-1">
 						<img class="hover__image" src="<?php echo $imagepath[0]; ?>" alt="gallery">
@@ -110,7 +110,8 @@ $customPostQuery = new WP_Query($args);
 						<!-- <script>console.log("yo")</script> -->
 					</a>
 
-			<?php endwhile;
+					<?php
+			endwhile;
 
 			endif;
 
@@ -120,11 +121,11 @@ $customPostQuery = new WP_Query($args);
 			</main>
 			<div class="pagination-container">
 			<?php
-			// Step  3 : Call the Pagination Function Here  
+			// Step  3 : Call the Pagination Function Here
 
-			if (function_exists("cpt_pagination")) {
+			if ( function_exists( 'cpt_pagination' ) ) {
 
-				cpt_pagination($customPostQuery->max_num_pages);
+				cpt_pagination( $customPostQuery->max_num_pages );
 			}
 			?>
 			</div>

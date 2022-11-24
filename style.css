@@ -714,8 +714,9 @@ textarea {
 /* Small menu. */
 .menu-toggle,
 .main-navigation.toggled ul {
-	display: block;
+	display: none;
 }
+
 
 @media screen and (min-width: 37.5em) {
 
@@ -1014,7 +1015,6 @@ textarea {
 	color: #e93e2f !important;
 }
 
-
 .submit__button .fa{
 	padding: 0px;
 	width: auto;
@@ -1131,12 +1131,49 @@ single blog page
 	margin: auto;
 }
 
+@media screen and (max-width: 900px){
+.site-main{
+	width: 100%;
+	padding: 50px;
+}
+.pagination{
+	padding-bottom: 50px;
+}
+.blog-content{
+	display: block !important;
+}
+.blog-content-des{
+	padding-left: 0px !important;
+	padding-top: 20px;
+}
+.portfolio-container{
+	grid-template-columns:48% 48% !important;
+}
+.category-buttons-container{
+	flex-flow:wrap;
+	justify-content: center;
+}
+.gallery__button{
+	margin-bottom: 10px;
+}
+.gallery__label{
+	flex-direction: column;
+	padding-bottom:50px !important;
+}
+}
+
 .main-middle-content{
 	display: grid;
 	grid-template-columns: 70% 30%;
 	max-width: 1140px;
 	margin: auto;
 	gap: 80px;
+}
+
+@media screen and (max-width: 900px){
+.main-middle-content{
+	display: block;
+}
 }
 
 .blog-content{
@@ -1337,6 +1374,74 @@ single blog page
 	flex-direction: row;
 	height: 105px;
 	padding: 20px;
+}
+
+@media screen and (max-width: 900px){
+	.site-header{
+		display: inline;
+	}
+
+	.site-branding{
+		text-align: center;
+	}
+	.main-navigation ul {
+		justify-content: center !important;
+		padding-bottom: 20px;
+		flex-wrap: wrap;
+	}
+	.search-bar{
+		justify-content: center;
+	}
+	.slide-title{
+		font-size: 45px;
+	}
+	.gallery__label{
+		width: 100%;
+		padding: 0px 40px;
+	}
+	.gallery__grid{
+		grid-template-columns:48% 48% !important;
+	}
+	.container{
+		padding: 0px 40px;
+	}
+	.grid-container{
+		padding: 40px !important;
+	}
+	.fa{
+		font-size: 20px !important;
+		width: 50px !important;
+	}
+	
+}
+
+@media screen and (max-width: 500px){
+	.grid-container{
+		display: block !important;
+		padding: 20px !important;
+	}
+	.footer-section-one{
+		padding-left:20px !important ;
+	}
+	.footer-section-two{
+		padding-right:20px !important ;
+	}
+	.mid-container{
+		padding-left:0 ;
+		padding-right: 0;
+	}
+	.gallery__label{
+		flex-direction: column;
+	}
+	.gallery__label{
+		padding-bottom: 40px;
+	}
+	.gallery__grid{
+		gap: 15px !important;
+	}
+	.inner-mid-container{
+		display: grid !important;
+	} 
 }
 
 .main-navigation{
@@ -1698,5 +1803,7 @@ footer{
 	background: red; 
 	color:#fff;
  }
-
+ .pagination span{
+	display: none;
+ }
 
